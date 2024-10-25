@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flyer Generator</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .flyer-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <h1>Lost Pet Flyer Generator</h1>
+        <form id="flyer-form">
+            <label for="pet-name">Pet Name:</label>
+            <input type="text" id="pet-name" name="pet-name" required><br>
+
+            <label for="pet-description">Pet Description:</label>
+            <textarea id="pet-description" name="pet-description" rows="4" required></textarea><br>
+
+            <label for="contact-info">Contact Info:</label>
+            <input type="text" id="contact-info" name="contact-info" required><br>
+
+            <label for="image-file">Pet Photo:</label>
+            <input type="file" id="image-file" name="image-file" accept="image/*" required><br>
+
+            <button type="submit" id="generate-button">Generate Flyer</button>
+        </form>
+    </div>
+
+    <script>
+        // Listen for form submission
+        document.getElementById('flyer-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form from submitting and page refreshing
+
+            // Retrieve form data
+            var petName = document.getElementById('pet-name').value;
+            var petDescription = document.getElementById('pet-description').value;
+            var contactInfo = document.getElementById('contact-info').value;
+            var imageFile = document.getElementById('image-file').files[0];
+
+            // Read the selected image file
+            var reader = new FileReader();
+            reader.onloadend = function() {
+                // Generate flyer HTML
+                var flyerHtml = `
+                    <div class="flyer">
+                        <h2>Lost Pet: ${petName}</h2>
+                        <img src="${reader.result}" alt="Lost Pet">
+                        <p>${petDescription}</p>
+                        <p>Contact: ${contactInfo}</p>
+                    </div>
+                `;
+
+                // Create a new window to generate the flyer
+                var flyerWindow = window.open('', '_blank');
+                flyerWindow.document.open();
+                flyerWindow.document.write(`
+                    <html>
+                    <head>
+                        <title>Lost Pet Flyer</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                margin: 0;
+                                padding: 0;
+                            }
+
+                            .flyer {
+                                max-width: 400px;
+                                margin: 20px auto;
+                                padding: 20px;
+                                background-color: #fff;
+                                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            }
+
+                            h2 {
+                                text-align: center;
+                            }
+
+                            img {
+                                max-width: 100%;
+                                margin-bottom: 10px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        ${flyerHtml}
+                    </body>
+                    </html>
+                `);
+
+                flyerWindow.document.close();
+
+                // Convert flyer to PDF using PDFShift API
+                var api_key = '39817d6ad2cd45cdbea1303542ab62e1';
+                var pdfShiftURL = 'https://api.pdfshift.io/v3/convert/pdf';
+
+                fetch(pdfShiftURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + btoa(api_key + ':')
+                    },
+                    body: JSON.stringify({ 'source': flyerWindow.document.documentElement.outerHTML })
+                })
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a download link for the PDF
+                    var downloadLink = document.createElement('a');
+                    downloadLink.href = window.URL.createObjectURL(blob);
+                    downloadLink.download = 'lost_pet_flyer.pdf';
+                    downloadLink.click();
+                })
+                .catch(error => {
+                    console.error('Error converting HTML to PDF:', error);
+                    alert('An error occurred while generating the PDF.');
+                });
+            };
+
+            if (imageFile) {
+                reader.readAsDataURL(imageFile); // Read the image file as data URL
+            } else {
+                alert('Please select an image file.');
+            }
+        });
+    </script>
+</body>
+</html>

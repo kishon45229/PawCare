@@ -1,0 +1,358 @@
+<html>
+    <head>
+        <title>
+            Join with PawCare
+        </title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Link for browser lab logo-->
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+        <!--Link for eye icon in the password field-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <!--css style for login page-->
+        <style>
+            body {
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color:whitesmoke;
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+            }
+
+            .back-to-home {
+                position: absolute;
+                top: 70px;
+                left: 350px;
+                font-size: 16px;
+            }
+
+            /*Form styling(31-186)*/
+            h1 {
+                text-align: center;
+                color: #012853;
+                margin-bottom: 0;
+            }
+
+            p {
+                margin-top: 10;
+                text-align: center;
+                font-size: large;
+                font-weight: 400;
+            }
+
+            h5 {
+                margin-left: 10px;
+                line-height: 0;
+                font-size: 10pt;
+                font-weight: 500;
+                color: gray;
+            }
+
+            h5 {
+                margin-left: 20px;
+                font-size: 9pt;
+                font-weight: 500;
+                color: gray;
+            }
+
+            form {
+                background-color: #fff;
+                padding-left: 40px;
+                padding-right: 40px;
+                padding-top: 5px;
+                padding-bottom: 30px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 420px;
+                height: fit-content;
+                margin-bottom: 143px;
+                margin-top: 40px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            label {
+                display: block;
+                margin-top: 10px;
+                font-size: 19px;
+                padding-bottom: 5px;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #245953;
+                border-radius: 30px;
+                box-sizing: border-box;
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
+
+            input[type="email"] {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #245953;
+                border-radius: 30px;
+                box-sizing: border-box;
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
+
+            #password {  
+                display: block;
+                padding-right: 40px;
+                position: relative;
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #245953;
+                border-radius: 30px;
+                box-sizing: border-box;
+                font-size: 16px;
+            } 
+
+            .input-control {
+                display: block;
+                width: 100%;
+            }
+
+            .toggle-password {
+                position: absolute;
+                top: 42.2%;
+                right: 555px;
+                transform: translateY(-50%);
+                transform: translateX(-50%);
+                cursor: pointer;
+            }
+
+            button {
+                background-color: #012853;
+                color: #fff;
+                padding: 13.5px 20px;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            button:hover {
+                background-color: black;
+            }
+
+            .signup{
+                text-align: center;
+            }
+
+            /*Notification styling(118-171) */
+            fbutton {
+                background-color: #012853;
+                color: #fff;
+                padding: 10px 30px;
+                border: none;
+                border-radius: 30px;
+                cursor: pointer;
+                font-size: 18px;
+                width: 50%;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                margin-left: 250px;
+            }
+
+            fbutton:hover {
+                background-color: black;
+            }
+
+            .popup-notification {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }   
+
+            .popup-notification h2 {
+                margin-top: 0;
+            }
+
+            .popup-notification p {
+                margin-bottom: 20px;
+            }
+
+            .popup-notification button {
+                display: block;
+                margin: auto;
+            }
+
+            .popup-background {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 998;
+                backdrop-filter: blur(5px);
+            }
+
+            /*Footer styling(188-)*/
+            footer {
+                background-color: #012853;
+                padding: 10px;
+                text-align: center;
+            }
+
+            footer p {
+                color: white;
+                font-size: 12px;
+                margin: 0;
+            }
+        </style>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS5UKufdB0HBiZ0xIH-ZWGrtiBIjrZnyo&callback=initMap" async defer></script>
+        
+        <!--JavaScript validation for user entered data-->
+        <script>
+            function validateForm() {
+                let email = document.getElementById("email").value.trim();
+                let emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                let password = document.getElementById("password").value.trim();
+
+                if (email === "") {
+                    alert("Email must be filled out");
+                    return false;
+                }
+
+                if (!emailPattern.test(email)) {
+                    alert("Please enter a valid email address");
+                    return false;
+                }
+
+                if (password === "") {
+                    alert("Password cannot be blank");
+                    return false;
+                }
+
+                return true;
+            }  
+        </script> 
+    </head>
+
+    <body>
+        <!--'Back to home' link-->
+        <a href="Getting started.php" class="back-to-home">
+            Back to Home
+        </a>
+        
+        <!--Login form to get email and password-->
+        <form onsubmit="return validateForm();" method="get" action="Db login user.php" >
+            <h1>
+                Welcome to PawCare
+            </h1>
+
+            <p>
+                Login with your account
+            </p>
+            
+            <label for="email">
+                E-mail
+            </label>  
+            <input type="email" id="email" name="email" placeholder="Enter email">
+
+            <label for="password">
+                Password
+            </label>  
+
+            <input type="password" id="password" name="password" class="input-control" placeholder="Enter password">
+            <span toggle="#password" class="toggle-password">
+                 <i class="fas fa-eye"></i>
+            </span>
+
+            <!--JavaScript code for view password-->
+            <script>
+                const passwordField = document.getElementById("password");
+                const togglePassword = document.querySelector(".toggle-password");
+
+                togglePassword.addEventListener("click", function () {
+                    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+                    passwordField.setAttribute("type", type);
+
+                    const icon = this.querySelector("i");
+                    icon.classList.toggle("fa-eye-slash");
+                });
+            </script>
+
+            <a href="#" id="forgotPasswordLink" name="forgotpassword">
+                Forgot password?
+            </a>
+
+            <script>
+                const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+
+                forgotPasswordLink.addEventListener("click", function(event) {
+                    event.preventDefault();
+
+                    // Create the popup notification
+                    const notification = document.createElement("div");
+                    notification.classList.add("popup-notification");
+
+                    // Add the heading
+                    const heading = document.createElement("h2");
+                    heading.textContent = "Forgot password?";
+                    notification.appendChild(heading);
+
+                    // Add the notification text
+                    const text = document.createElement("p");
+                    text.textContent = "Relax and try to remember your password";
+                    notification.appendChild(text);
+
+                    // Add the "Thanks" button
+                    const button = document.createElement("fbutton");
+                    button.textContent = "Okay";
+                    button.addEventListener("click", function() {
+                        notification.parentNode.removeChild(notification);
+                        document.body.removeChild(background);
+                    });
+                    notification.appendChild(button);
+
+                    // Create the background
+                    const background = document.createElement("div");
+                    background.classList.add("popup-background");
+
+                    // Add the notification and background to the body
+                    document.body.appendChild(background);
+                    document.body.appendChild(notification);
+                });
+            </script>
+            
+            <button type="submit" value="Submit">
+                Sign in
+            </button>
+
+            <p>
+                Don't have an account?
+            </p>
+
+            <div class="signup">
+                <a href="Sign up.html" class="signup" name="signup" target="_blank">
+                    Join with us
+                </a>
+            </div>
+        </form>
+
+        <!--Footer of the login page-->
+        <footer>
+            <p>&copy; 2023 PawCare. All rights reserved.</p>
+        </footer>
+    </body>
+</html>

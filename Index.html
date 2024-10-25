@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        
+        <!--Link for browser lab logo-->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico"/>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <title>
+            Getting started
+        </title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            }
+
+            .opening {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                background: url(bg3.jpg)no-repeat;
+                background-size: cover;
+                background-position: top;
+            }
+
+            header {
+                position: relative;
+                margin-top: 0;
+                width: 100%;
+                padding: 30px 100px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            header .sign-in-btn a{
+                position: relative;
+                color: black;
+                background-color: white;
+                text-decoration: none;
+                font-weight: 500;
+                letter-spacing: 1px;
+                padding: 3px 20px;
+                border-radius: 20px;
+                transition: 0.3s;
+                transition-property: background;
+            }
+
+            header .sign-in-btn a:hover {
+                color: white;
+                background-color: #014487;
+            }
+
+            header .navigation a{
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                letter-spacing: 1px;
+                padding: 2px 15px;
+                border-radius: 20px;
+                transition: 0.3s;
+                transition-property: background;
+            }
+
+            header .navigation a:not(:last-child) {
+                margin-right: 30px;
+            }
+
+            header .navigation a:hover {
+                color: black;
+                background-color: white;
+            }
+
+            header .navigation a.active {
+                color: black;
+                background-color: white;
+            } 
+
+            .content {
+                max-width: 900px;
+                padding: 40px 100px;
+            }
+
+            .content .info h1 {
+                color: white;
+                font-size: 120px;
+                margin-bottom: 20px;
+            }
+
+            .content .description {
+                height: 90px;
+                color: white;
+                font-size: 30px;
+                font-weight: 600;
+                margin-bottom: 55px;
+            }
+
+            .content .join a {
+                color: white;
+                background-color: #014487;
+                font-size: 20px;
+                font-weight: 500;
+                text-decoration: none;
+                padding: 10px 25px;
+                border-radius: 30px;
+                border-style: none;
+                transition: 0.2s;
+                transition-property: background;
+            }
+
+            .content .join a:hover {
+                color: #012853;
+                background-color: white;
+                cursor: pointer;
+            }
+
+            .content .join {
+                padding-bottom: 25px;
+            }
+
+            .content .signin a {
+                font-size: 18px;
+                color: white;
+            }
+
+            .device {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            .device .device-heading h1{
+                padding: 50px 100px;
+                text-align: center;
+                font-size: 50px;
+                color:#014487;
+            }
+
+            .device .device-img {
+                text-align: center;
+            }
+
+            .device.active .device-heading h1 {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .device.active .device-img img {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            .device .device-heading h1 {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .device .device-img img {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .device .buy {
+                margin-top: 100px;
+                text-align: center;
+            }
+
+            .device .buy a {
+                color: white;
+                background-color: #014487;
+                font-size: 20px;
+                font-weight: 500;
+                text-decoration: none;
+                padding: 10px 25px;
+                border-radius: 30px;
+                border-style: none;
+                transition: 0.2s;
+                transition-property: background;
+            }
+
+            .device .buy a:hover {
+                color: white;
+                background-color: #012853;
+                cursor: pointer;
+            }
+
+            /* Features section styles */
+            .features {
+                padding-top: 80px;
+                padding-bottom: 80px;
+                background-color: #012853;
+                height: min-content;
+                position: relative;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .section-title {
+                color: white;
+                text-align: center;
+                font-size: 50px;
+                margin-bottom: 40px;
+            }
+
+            .feature-card {
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .feature-icon {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 20px;
+            }
+
+            .feature-title {
+                font-size: 26px;
+                margin-bottom: 10px;
+            }
+
+            .feature-text {
+                font-size: 18px;
+            }
+
+            .features.active .features-container .section-title {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Add animation styles */
+            .features.active .feature-card{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Add initial styles for animation */
+            .features .feature-card {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            /* Add animation styles */
+            .features.active .section-title {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .features.active .feature-card .feature-icon {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .features.active .feature-card .feature-title {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .features.active .feature-card .feature-text {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Add initial styles for animation */
+            .features .section-title {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .features .feature-card .feature-icon {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .features .feature-card .feature-title {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .features .feature-card .feature-text {
+                transform: translateY(10px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .how-to-start {
+                position: relative;
+                width: 100%;
+                max-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding-top: 80px;
+                padding-bottom: 80px;
+            } 
+
+            .how-to-start .heading {
+                padding-bottom: 30px;
+                text-align: center;
+                font-size: 50px;
+                color:#014487;
+            }
+
+            .how-to-start .sub-heading {
+                text-align: center;
+                font-size: 20px;
+                padding-bottom: 30px;
+            }
+
+            .how-to-start section {
+                position: relative;
+                display: flex;
+            }
+
+            .steps {
+                margin: auto;
+                text-align: center;
+                width: 300px;
+                height: 330px;
+            }
+
+            .steps h3 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 30pt;
+                font-weight: bold;
+                padding: 20px;
+            }
+
+            .steps p {
+                width: 300px;
+                padding: 20px;
+                text-align: center;
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 15pt;
+                font-weight: 500;
+            }
+
+            .how-to-start .buy {
+                padding-top: 20px;
+            }
+
+            .how-to-start .buy a {
+                color: white;
+                background-color: #014487;
+                font-size: 20px;
+                font-weight: 500;
+                text-decoration: none;
+                padding: 10px 25px;
+                border-radius: 30px;
+                border-style: none;
+                transition: 0.2s;
+                transition-property: background;
+            }
+
+            .how-to-start .buy a:hover {
+                color: white;
+                background-color: #012853;
+                cursor: pointer;
+            }
+
+            /* Add animation styles */
+            .how-to-start.active .heading{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .how-to-start.active .sub-heading{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .how-to-start.active .steps{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Add initial styles for animation */
+            .how-to-start .heading {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .how-to-start .sub-heading {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .how-to-start .steps {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .testimonals {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding-top: 80px;
+                padding-bottom: 80px;
+            } 
+
+            .testimonals .heading {
+                padding-bottom: 30px;
+                text-align: center;
+                font-size: 50px;
+                color:#014487;
+            }
+
+            .testimonals .sub-heading {
+                text-align: center;
+                font-size: 20px;
+                padding-bottom: 30px;
+            }
+
+            .testimonals section {
+                position: relative;
+                display: flex;
+            }
+
+            .testimonals-box {
+                border: 2px solid white;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+                border-radius: 5px;
+                margin: auto;
+                padding: 16px;     
+                width: 300px;
+                height: 370px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12pt;
+            }
+
+            .testimonals-box h3 {
+                font-size: 20pt;
+                margin: auto;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .testimonals-box h4 {
+                font-size: 15pt;
+                margin: auto;
+                padding-bottom: 5px;
+            }
+
+            .testimonals-box p {
+                margin: auto;
+                padding-top: 20px;
+                text-align: justify;
+                font-size: 15px;
+            }
+
+            .testimonals-box img {
+                float: left;
+                margin-left: 25px;
+                border-radius: 50%;
+                height: 100px;
+            }
+
+            @media (max-width: 500px) {
+                .testimonalsBox {
+                    text-align: center;
+                }
+                .testimonalsBox img {
+                    margin: auto;
+                    float: none;
+                    display: block;
+                }
+            }
+
+            /* Add animation styles */
+            .testimonals.active .heading{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .testimonals.active .sub-heading{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .testimonals.active .testimonals-box{
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            /* Add initial styles for animation */
+            .testimonals .heading {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .testimonals .sub-heading {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .testimonals .testimonals-box {
+                transform: translateY(150px);
+                opacity: 0;
+                transition: transform 2s ease, opacity 1s ease;
+            }
+
+            .review {
+                position: relative;
+                width: 100%;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            .review .heading {
+                padding-bottom: 30px;
+                text-align: center;
+                font-size: 50px;
+                color:#014487;
+            }
+
+            .form {
+                margin: auto;
+                width: 600px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 16pt;   
+            }
+            
+            .form-label {
+                margin-bottom: 20px;
+                text-align: left;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            #rating {
+                width: 620px;
+            }
+
+            input, select, textarea {
+                width: 620px;
+                padding: 10px;
+                border-radius: 5px;
+                border: 2px solid white;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                font-size: 16px;
+            }
+
+            button {
+                background-color:#014487;
+                color: white;
+                border: none;
+                border-radius:5px;
+                padding: 10px 10px;
+                font-size: 18px;
+                cursor: pointer;
+                display: block;
+                margin: auto;
+                width: 620px;
+            }
+
+            button:hover {
+                background-color: #012853;
+            }     
+            
+            footer section{
+                background-color: #014487;
+                position: relative;
+                display: flex;   
+            }
+
+            .aboutUs {
+                margin: auto;
+                margin-left: 100px;
+                padding-top: 20px;   
+                width: 500px;
+                height: 250px;
+            }
+
+            .aboutUs h3 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18pt;
+                color: #fff;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .aboutUs p {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12pt;
+                color: #fff;
+                line-height: 1.5;
+                margin-bottom: 10px;
+                font-weight: 450;
+            } 
+
+            .contactUs {
+                margin: auto;
+                padding-top: 20px;
+                width: 300px;
+                height: 250px;
+            }
+
+            .contactUs h3 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18pt;
+                color: #fff;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .contactUs p {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12pt;
+                color: #fff;
+                line-height: 1.5;
+                margin-bottom: 10px;
+                font-weight: 450;
+            } 
+
+            .connectSM {
+                margin: auto;
+                padding-top: 20px;
+                width: 300px;
+                height: 250px;
+            }
+
+            .connectSM h3 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18pt;
+                color: #fff;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            .fa {
+                padding: 12px;
+                font-size: 25px;
+                width: 45px;
+                height: 45px;
+                text-align: center;
+                text-decoration: none;
+                margin: 5px 2px;
+                border-radius: 50%;
+                
+                align-items: center;
+                justify-content: center;
+            }
+
+            .fa:hover {
+                opacity: 0.7;
+            }
+
+            .fa-facebook {
+                background: #3B5998;
+                color: white;
+            }
+
+            .fa-twitter {
+                background: #55ACEE;
+                color: white;
+            }
+
+            .fa-instagram {
+                background: #125688;
+                color: white;
+            }
+
+            .fa-linkedin {
+                background: #007bb5;
+                color: white;
+            }   
+
+            #topBtn {
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                display: none; 
+                position: fixed; 
+                bottom: 20px; 
+                right: 30px; 
+                z-index: 99; /* Make sure it does not overlap */
+                border: none; 
+                outline: none; 
+                background-color: black; 
+                color: white; 
+                cursor: pointer; 
+                padding: 15px; 
+                border-radius: 50px; 
+                font-size: 30px; 
+                font-weight: bolder;
+            }       
+
+            #topBtn:hover {
+                transform: scale(1.1);
+                background-color: #245953;
+            }
+
+            /* ... existing CSS code ... */
+            /* Add new CSS code for the scroll-to-top button */
+            .scroll-to-top {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #014487;
+                color: white;
+                border: none;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                text-align: center;
+                font-size: 24px;
+                cursor: pointer;
+                transition: opacity 0.3s;
+            }
+
+            .scroll-to-top .fa {
+                margin-top: -10px;
+                margin-left: -8px;
+            }
+
+            /* Show the scroll-to-top button when the user scrolls down */
+            .scroll-to-top.show {
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--Header-->
+        <section class="opening">
+            <header>    
+                <div class="navigation">
+                    <a href="#" class="active">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Info</a>
+                    <a href="#">Services</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <div class="sign-in-btn">
+                    <a href="Login.html" target="_blank">Sign in</a>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="info">
+                    <h1>
+                        PawCare
+                    </h1>
+
+                    <div class="description">
+                        <p>Track and Protect Your Pets with PawCare: Ensure Their Safety and Your Peace of Mind</p>
+                    </div>
+                </div>
+
+                <div class="join">
+                    <a href="Sign up.html">Join with us</a>
+                </div>
+
+                <div class="signin">
+                    <a href="Login.html">Already have an account?</a>
+                </div>
+            </div>
+        </section>
+
+        <!--Device-->
+        <section class="device">
+            <div class="device-heading">
+                <h1>
+                    Everything starts with our device PawTracker.
+                </h1>
+            </div>
+
+            <div class="device-img">
+                <img src="assets/Device_img.png" width="600px" height="300px">
+            </div>
+
+            <div class="buy">
+                <a href="Buy pawtracker.html">Get a  new PawTracker</a>
+            </div>
+        </section>
+
+        <script>
+            const deviceSection = document.querySelector('.device');
+          
+            // Create a new Intersection Observer instance
+            const deviceObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the 'active' class when the section is in view
+                        deviceSection.classList.add('active');
+                    } 
+                    else {
+                        // Remove the 'active' class when the section is out of view
+                        deviceSection.classList.remove('active');
+                    }
+                });
+            });
+          
+            // Start observing the device section
+            deviceObserver.observe(deviceSection);
+        </script>
+
+        <!--Features--> 
+        <section class="features">
+            <div class="features-container">
+                <h1 class="section-title">
+                    Key Features
+                </h1>
+
+                <div class="feature-card">
+                    <img src="assets/icon1.png" alt="Feature 1" class="feature-icon">
+
+                    <h3 class="feature-title">
+                        Real-time Location Tracking
+                    </h3>
+
+                    <p class="feature-text">
+                        Stay connected with your pets with our live GPS tracking feature.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <img src="assets/icon2.png" alt="Feature 2" class="feature-icon">
+
+                    <h3 class="feature-title">
+                        Geofencing
+                    </h3>
+
+                    <p class="feature-text">
+                        Set up virtual boundaries and receive alerts when your pet leaves the safe zone.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <img src="assets/icon3.png" alt="Feature 3" class="feature-icon">
+
+                    <h3 class="feature-title">
+                        Activity Monitoring
+                    </h3>
+
+                    <p class="feature-text">
+                        Keep track of your pet's activity levels, walked distance, and overall health.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const featuresSection = document.querySelector('.features');
+
+            // Create a new Intersection Observer instance
+            const featuresObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the 'active' class when the section is in view
+                        featuresSection.classList.add('active');
+                    } else {
+                        // Remove the 'active' class when the section is out of view
+                        featuresSection.classList.remove('active');
+                    }
+                });
+            });
+
+            // Start observing the features section
+            featuresObserver.observe(featuresSection);
+        </script>
+        
+        <!--How to start-->
+        <div class="how-to-start">
+            <h1 class="heading">
+                How to start with PawTracker?
+            </h1>
+
+            <p class="sub-heading">
+                Follow these simple three steps.
+            </p> 
+
+            <section>
+                <div class="steps">
+                    <h3>
+                        Step 1
+                    </h3>
+
+                    <img src="assets/Buy.png" width="100" height="100">
+
+                    <p>
+                        Buy the PawTracker device based on your pet you have.
+                    </p>
+
+                    <div class="buy">
+                        <a href="Buy pawtracker.html">Get a  new PawTracker</a>
+                    </div>
+                </div>
+
+                <div class="steps">
+                    <h3>
+                        Step 2
+                    </h3>
+
+                    <img src="assets/Sim card.png" width="100" height="100">
+
+                    <p>
+                        Insert IoT sim card into to PawTracker.
+                    </p>
+                </div>
+
+                <div class="steps">
+                    <h3>
+                        Step 3
+                    </h3>
+
+                    <img src="assets/Dog collar.png" width="100" height="100">
+
+                    <p>
+                        Fix the PawTracker into your pet's collar and start tracking.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            const stepsSection = document.querySelector('.how-to-start');
+
+            // Create a new Intersection Observer instance
+            const stepsObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the 'active' class when the section is in view
+                        stepsSection.classList.add('active');
+                    } else {
+                        // Remove the 'active' class when the section is out of view
+                        stepsSection.classList.remove('active');
+                    }
+                });
+            });
+
+            // Start observing the features section
+            stepsObserver.observe(stepsSection);
+        </script>
+
+        <!--Testimonals-->
+        <div class="testimonals">
+            <h1 class="heading">
+                What are our customers saying?
+            </h1>
+
+            <p class="sub-heading">
+                Here are some customers sharing there experience with PawTracker.<br>
+            </p>
+
+            <section>
+                <div class="testimonals-box">
+                    <img src="assets/Kapil.jpg" alt="Kapil image" style="width:100px">
+
+                    <h3>
+                        Kapil
+                    </h3>
+
+                    <h4>
+                        5 out of 5 stars
+                    </h4>
+                    
+                    <p>
+                        I recently purchased the PawTracker pet tracking device for my dog and it has been a game changer. 
+                        My dog loves to roam around and sometimes he would wander off too far, causing me to panic and search for him for hours. 
+                        With this device, I can easily track his location in real time on my phone and get alerts if he goes outside of a certain area.
+                    </p>
+                </div>
+
+                <div class="testimonals-box">
+                    <img src="assets/Diluxshan.jpg" alt="Diluxshan image" style="width:100px">
+
+                    <h3>
+                        Diluxshan
+                    </h3>
+
+                    <h4>
+                        4 out of 5 stars
+                    </h4>
+
+                    <p>
+                        I'm impressed with the PawTracker pet tracking device's accuracy and ease of use. Even though my cat is indoors, she occasionally escapes outside, causing me to search for hours. The geofencing feature is a favorite of mine as I can set a safe area for her. If she wanders beyond that zone, I receive an alert on my phone, providing peace of mind for her safety.
+                    </p>
+                </div>
+
+                <div class="testimonals-box">
+                    <img src="assets/Jinosh.jpg" alt="Jinoshkanthan image" style="width:100px">
+
+                    <h3>
+                        Jinosh
+                    </h3>
+
+                    <h4>
+                        4 out of 5 stars
+                    </h4>
+
+                    <p>
+                        I appreciate the PawTracker's durability. Despite my dog's rough play and frequent scrapes, the device has remained intact. Its water resistance is also a significant advantage. Overall, I'm happy with my purchase and highly recommend the PawTracker for pet owners seeking safety and security.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            const testimonalsSection = document.querySelector('.testimonals');
+          
+            // Create a new Intersection Observer instance
+            const testimonalsObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add the 'active' class when the section is in view
+                        testimonalsSection.classList.add('active');
+                    } 
+                    else {
+                        // Remove the 'active' class when the section is out of view
+                        testimonalsSection.classList.remove('active');
+                    }
+                });
+            });
+          
+            // Start observing the device section
+            testimonalsObserver.observe(testimonalsSection);
+        </script>
+
+        <!--Review-->
+        <div class="review">
+            <h1 class="heading">
+                Leave a review for us!
+            </h1> 
+
+            <div class="form">  
+                <form>
+                    <div class="form-label">
+                        <label for="name">
+                            Name:
+                        </label>
+
+                        <input type="text" id="name" name="name" required>
+                    </div> 
+
+                    <div class="form-label">
+                        <label for="rating">
+                            Rating:
+                        </label>
+
+                        <select id="rating" name="rating" required>
+                            <option value="">--Please choose a rating--</option>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+
+                    <div class="form-label">
+                        <label for="review">
+                            Review:
+                        </label>
+
+                        <textarea id="review" name="review" rows="5" required></textarea>
+                    </div>
+
+                    <div>
+                        <button type="submit" id="reviewBtn" name="reviewBtn">
+                            Submit Review
+                        </button>
+                    </div>
+                </form>
+            </div> 
+        </div>
+
+        <!--Footer-->
+        <footer>
+            <section>
+                <div class="aboutUs">
+                    <h3>
+                        About Us
+                    </h3>
+
+                    <p>
+                        We are a team of dedicated pet lovers who are passionate about providing the best safety and secure for your lovely pets.
+                    </p>
+                </div>
+
+                <div class="contactUs">
+                    <h3>
+                        Contact Us
+                    </h3>
+
+                    <p>
+                        Email: info@pawcare.com
+                    </p>
+
+                    <p>
+                        Phone: 076-3931710
+                    </p>
+
+                    <p>
+                        Address: No. 2/1, Sampath Uyana, 3rd mile post, Passara road, Badulla, Sri Lanka.
+                    </p>
+                </div>
+
+                <div class="connectSM">
+                    <h3>
+                        Connect With Us
+                    </h3>
+
+                    <a href="https://web.facebook.com/login.php/?_rdc=1&_rdr" class="fa fa-facebook" target="_blank"></a>
+                    <a href="https://twitter.com/login?lang=en" class="fa fa-twitter" target="_blank"></a>
+                    <a href="https://www.instagram.com/accounts/login/" class="fa fa-instagram" target="_blank"></a>
+                    <a href="https://www.linkedin.com/login" class="fa fa-linkedin" target="_blank"></a>
+                </div>
+            </section>
+        </footer>
+
+        <button class="scroll-to-top" onclick="scrollToTop()"><i class="fa fa-chevron-up"></i></button>
+        
+        <script>
+            // Function to scroll to the top of the page
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+
+            // Show/hide the scroll-to-top button based on the user's scroll position
+            window.addEventListener("scroll", function() {
+                var scrollButton = document.querySelector(".scroll-to-top");
+                
+                if (window.pageYOffset > 200) {
+                    scrollButton.classList.add("show");
+                } 
+                else {
+                    scrollButton.classList.remove("show");
+                }
+            });
+        </script>
+    </body>
+</html>
